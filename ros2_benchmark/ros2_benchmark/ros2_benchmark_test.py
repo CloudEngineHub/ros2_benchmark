@@ -342,7 +342,6 @@ class ROS2BenchmarkTest(unittest.TestCase):
 
         def construct_table_blocks_helper(prefix, data):
             nonlocal is_prev_dict
-            nonlocal table_blocks
             nonlocal table_block_rows
             for key, value in data.items():
                 key_str = str(key.value) if isinstance(key, Enum) else str(key)
@@ -418,8 +417,6 @@ class ROS2BenchmarkTest(unittest.TestCase):
         metadata[BenchmarkMetadata.DEVICE_OS] = \
             f'{uname.system} {uname.release} {uname.version}'
         metadata[BenchmarkMetadata.CONFIG] = self.config.to_yaml_str()
-        global idle_cpu_util
-        global idle_gpu_util
         if idle_cpu_util is not None:
             metadata[BenchmarkMetadata.IDLE_CPU_UTIL] = idle_cpu_util
         if idle_gpu_util is not None:
